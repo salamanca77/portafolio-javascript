@@ -37,6 +37,7 @@ html {
 
 body {
     margin: 0;
+    border: 0;
     overflow-x: hidden;
 }
 
@@ -102,6 +103,7 @@ p {
     max-width: 800px;
     text-align: center;
     overflow: hidden;
+    overflow-x: hidden;
     background-color: var(--carusel-bg-color);
 }
 
@@ -246,6 +248,7 @@ p {
 }
 
 /* >>>>>>>>>>>>>>>>>>MENU<<<<<<<<<<<<<<<<<<<<<<< */
+
 .menu-btn {
     outline: thin solid var(--second-color);
     border: 0;
@@ -270,13 +273,6 @@ p {
     pointer-events: none;
 }
 
-.menu a:hover {
-    color: var(--white-color);
-    background-color: var(--first-color);
-}
-
-
-
 .menu.is-active {
     opacity: 1;
     pointer-events: auto;
@@ -290,6 +286,30 @@ p {
     text-decoration: none;
     color: var(--first-color);
 }
+
+.menu a:hover {
+    color: var(--white-color);
+    background-color: var(--first-color);
+}
+
+/* 
+@media screen and(min-width:1024px) {
+    .text-lg-left{
+        text-align: left;
+    }
+    
+    .text-lg-center{
+        text-align: center;
+    }
+    
+    
+
+    .text-lg-right{
+        text-align: right;
+    }
+} */
+
+
 
 /* >>>>>>>>>>>>>>>>>MODAL <<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 
@@ -438,6 +458,7 @@ progress {
 }
 
 /* >>>>>>>>>>>>>>>>>>SITE STYLE<<<<<<<<<<<<<<<<<<<<<<< */
+
 .about>article {
     margin-bottom: 2rem;
 }
@@ -528,8 +549,8 @@ progress {
 }
 
 
-.portafolio-card-inf>div {
-    padding: 1rem;
+.portafolio-card-inf > div {
+    padding: 3rem;
     border: thin solid var(--white-color);
     width: 100%;
     height: 100%;
@@ -589,7 +610,7 @@ progress {
     height: 1.5rem;
 }
 
-@media screen and (min-width:768px) {
+@media (min-width:768px) {
     .contact-cards {
         display: grid;
         grid-template-columns: repeat(2, 48%);
@@ -624,7 +645,13 @@ progress {
 }
 
 
-@media screen and (min-width:1024px) {
+@media (min-width:1024px) {
+    
+    .full-lg-screen {
+        width: 100%;
+        min-height: 100vh;
+    }
+    
     .about {
         display: grid;
         grid-template-columns: repeat(3, 30%);
@@ -690,10 +717,6 @@ progress {
         padding-right: 0;
     }
 
-    .full-lg-screen {
-        width: 100%;
-        min-height: 100vh;
-    }
 
     .text-lg-left {
         text-align: left;

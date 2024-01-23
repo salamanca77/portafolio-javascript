@@ -1,10 +1,10 @@
 /* >>>>>>>>>>>>>>>>>>PROPIEDADES PERSONALIZADAS<<<<<<<<<<<<<<<<<<<<<<< */
 :root {
-    --first-color: #d90062;
-    --first-alpha-color: rgba(217, 0, 98, 0.75);
+    --first-color: #fff;
+    --first-alpha-color: rgb(0,74,119, 0.75);
     --second-color: #14192d;
     --second-alpha-color: rgba(20, 25, 45, 0.75);
-    --second-color: #501464;
+    --second-color: #004a77ff;
     --third-alpha-color: rgba(80, 20, 100, 0.75);
     --white-color: #fff;
     --gray-light-color: #f3f3f3;
@@ -226,7 +226,7 @@ p {
 .hero-image {
     background-image: var(--hero-image);
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     background-position: center;
     background-attachment: var(--attachment);
 }
@@ -241,12 +241,29 @@ p {
     background-color: var(--opacity-image);
 }
 
+.hero-image-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9rem;
+}
 .hero-image-title {
-    font-size: 7.5vw;
+    font-size: 3.5vw;
     color: var(--white-color);
 
 }
+.hero-image-descripcion {
+    font-size: 1.5vw;
+    color: var(--white-color);
+    margin-bottom: 1.5vw;
 
+}
+
+.hero-image-icon-sociales{
+    display: flex;
+    justify-content: center;
+    gap: 1.3vw;
+}
 /* >>>>>>>>>>>>>>>>>>MENU<<<<<<<<<<<<<<<<<<<<<<< */
 
 .menu-btn {
@@ -342,7 +359,7 @@ p {
 .modal-close svg {
     width: 3rem;
     height: 3rem;
-    fill: var(--first-color);
+    fill: var(--second-color);
 }
 
 .modal[id|="trabajo"]:target {
@@ -394,8 +411,8 @@ progress {
     width: 200px;
     font-weight: bold;
     text-align: center;
-    color: var(--white-color);
-    background-color: var(--first-color);
+    color: var(--first-color);
+    background-color: var(--second-color);
 }
 
 .container {
@@ -409,8 +426,8 @@ progress {
 }
 
 .section-title {
-    border-top: thin solid var(--first-color);
-    border-bottom: thin solid var(--first-color);
+    border-top: thin solid var(--second-color);
+    border-bottom: thin solid var(--second-color);
     width: 250px;
     margin: 5rem auto;
     text-align: center;
@@ -477,7 +494,7 @@ progress {
 .contact-card>svg {
     width: 2rem;
     height: 2rem;
-    fill: var(--first-color);
+    fill: var(--second-color);
 }
 
 .contact-card>small {
@@ -489,7 +506,7 @@ progress {
     text-align: center;
     padding: .5rem;
     color: var(--white-color);
-    background-color: var(--third-alpha-color);
+    background-color: var(--second-color);
 }
 .header {
     position: fixed;
@@ -504,7 +521,7 @@ progress {
 
 .header>.container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -516,20 +533,24 @@ progress {
     text-decoration: none;
 }
 
-.portafolio-card {
+.proyectos-card {
     position: relative;
     width: 100%;
     margin: auto;
     display: block;
 }
 
-.portafolio-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.proyectos-card img {
+    min-width: 400px;
+    min-height: 400px;
+    object-fit: fill;
 }
 
-.portafolio-card-inf {
+.proyectos-card h3 {
+    text-align: center;
+}
+
+.proyectos-card-inf {
     position: absolute;
     top: 0;
     left: 0;
@@ -543,13 +564,13 @@ progress {
     transition: all .5s ease-out;
 }
 
-.portafolio-card:hover .portafolio-card-inf {
+.proyectos-card:hover .proyectos-card-inf {
     opacity: 1;
     pointer-events: auto;
 }
 
 
-.portafolio-card-inf > div {
+.proyectos-card-inf > div {
     padding: 3rem;
     border: thin solid var(--white-color);
     width: 100%;
@@ -562,7 +583,7 @@ progress {
     text-align: center;
 }
 
-.portafolio-modal {
+.proyectos-modal {
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -570,23 +591,28 @@ progress {
     background-color: var(--white-color);
 }
 
-.portafolio-modal h3 {
+.proyectos-modal img{
+    max-width: 400px;
+    max-width: 400px;
+}
+
+.proyectos-modal h3 {
     padding: .5rem 0;
     margin: 1rem auto;
     border-bottom: medium solid var(--first-color);
 }
 
-.portafolio-detalles {
+.proyectos-detalles {
     display: grid;
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 100%;
     grid-auto-rows: 2rem;
 }
 
-.portafolio-detalles b {
-    color: var(--first-color);
+.proyectos-detalles b {
+    color: var(--second-color);
 }
 
-.portafolio-info {
+.proyectos-info {
     margin-left: 1rem;
     align-self: center;
 }
@@ -610,7 +636,21 @@ progress {
     height: 1.5rem;
 }
 
+.sobre-mi-contanier{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 900px;
+
+}
+
+.sobre-mi-contenido{
+    margin-bottom: 2rem;
+}
+
 @media (min-width:768px) {
+    
     .contact-cards {
         display: grid;
         grid-template-columns: repeat(2, 48%);
@@ -622,11 +662,16 @@ progress {
         grid-template-columns: repeat(2, 50%);
     }
 
+    /* .proyectos-card img {
+        width: 100%;
+        height: 100%;
+    } */
+
     .portfolio .section-title {
         grid-column: span 2;
     }
 
-    .portafolio-modal {
+    .proyectos-modal {
         max-width: 800px;
         flex-direction: row;
     }
@@ -642,21 +687,22 @@ progress {
         grid-column: span 2;
     }
 
+    .header>.container {
+        justify-content:flex-end;
+        align-items: center;
+    }
+
 }
 
-
 @media (min-width:1024px) {
-    
+ 
+    .header>.container {
+        justify-content:center;
+        align-items: center;
+    }
     .full-lg-screen {
         width: 100%;
         min-height: 100vh;
-    }
-    
-    .about {
-        display: grid;
-        grid-template-columns: repeat(3, 30%);
-        justify-content: space-between;
-        align-content: center;
     }
 
     .contact-form {
@@ -677,7 +723,9 @@ progress {
         margin-left: 0;
     }
     .contact-cards {
-        grid-template-columns: repeat(4, 24%);
+        grid-template-columns: repeat(2, 30%);
+        justify-content: center;
+        column-gap: 5rem;
     }
 
     .footer{

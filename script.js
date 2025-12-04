@@ -30,25 +30,33 @@
     $contactForm.addEventListener("submit", (e) => {
         e.preventDefault();
         $contactLouder.classList.remove("none");
+
+        const formData = new FormData(e.target);
+
         fetch("https://formsubmit.co/ajax/joliversalamanca@gmail.com", {
             method: "POST",
-            body: new FormData(e.target)
+            body: formData
         })
-            .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    throw new Error(`Error ${res.status}: ${res.statusText}`);
+                }
+            })
             .then(json => {
                 console.log(json);
                 location.hash = "#gracias";
                 $contactForm.reset();
-
             })
             .catch(error => {
-                console.log(error);
-                let message = error.status || "Ocurrio un error vuleva a intentarlo";
-                $contacResponse.querySelector("h3").innerHTML = `Error ${error.status}:${message}`;
+                console.log("Error:", error);
+                let message = error.message || "Ocurrió un error, vuelva a intentarlo";
+                $contacResponse.querySelector("h3").innerHTML = `Error: ${message}`;
             })
             .finally(() => {
                 $contactLouder.classList.add("none");
-                setInterval(() => {
+                setTimeout(() => {
                     location.hash = "#close";
                 }, 2000);
             });
@@ -78,6 +86,4 @@ document.getElementById('proyectos').addEventListener('click', function () {
 });
 
 
-/* Enlaces proyectos*/
-
-
+/* Enlaces menu*/

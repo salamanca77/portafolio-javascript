@@ -21,38 +21,10 @@
 })(document);
 
 /* >>>>>>>>>>>>>>>=>>>CONTACT FORM<<<<<<<<<<<<<<<<<<<<<<< */
-((d) => {
-    const $contactForm = d.querySelector(".contact-form");
-    const $contactLoader = d.querySelector(".contact-form-loader");
-    const $contactResponse = d.querySelector(".contact-form-response");
-
-    $contactForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        $contactLoader.classList.remove("none");
-        fetch("https://formsubmit.co/ajax/joliversalamanca@gmail.com", {
-            method: "POST",
-            body: new FormData(e.target)
-        })
-            .then((res) => (res.ok ? res.json() : Promise.reject(res)))
-            .then(json => {
-                console.log(json);
-                location.hash = "#gracias";
-                $contactForm.reset();
-
-            })
-            .catch(error => {
-                console.log(error);
-                let message = error.status || "Ocurrio un error vuleva a intentarlo";
-                $contactResponse.querySelector("h3").innerHTML = `Error ${error.status}:${message}`;
-            })
-            .finally(() => {
-                $contactLoader.classList.add("none");
-                setTimeout(() => {
-                    location.hash = "#close";
-                }, 2000);
-            });
-    })
-})(document);
+/*
+El envío del formulario ahora se maneja directamente a través del atributo 'action' en el HTML.
+El código AJAX anterior ha sido eliminado para evitar conflictos de CORS.
+*/
 
 
 

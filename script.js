@@ -28,32 +28,12 @@
     const $contacResponse = d.querySelector(".contact-form-response");
 
     $contactForm.addEventListener("submit", (e) => {
-        e.preventDefault();
         $contactLouder.classList.remove("none");
 
-        const formData = new FormData(e.target);
-
-        fetch("https://formsubmit.co/ajax/joliversalamanca@gmail.com", {
-            method: "POST",
-            body: formData
-        })
-            .then((res) => (res.ok ? res.json() : Promise.reject(res)))
-            .then(json => {
-                console.log(json);
-                location.hash = "#gracias";
-                $contactForm.reset();
-            })
-            .catch(error => {
-                console.log(error);
-                let message = error.status || "Ocurrió un error vuelva a intentarlo";
-                $contacResponse.querySelector("h3").innerHTML = `Error ${error.status}:${message}`;
-            })
-            .finally(() => {
-                $contactLouder.classList.add("none");
-                setTimeout(() => {
-                    location.hash = "#close";
-                }, 2000);
-            });
+        // Permitir que el formulario se envíe normalmente después de mostrar el loader
+        setTimeout(() => {
+            $contactForm.submit();
+        }, 500);
     })
 })(document);
 

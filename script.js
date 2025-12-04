@@ -79,3 +79,5 @@ document.getElementById('proyectos').addEventListener('click', function () {
 
 
 /* Enlaces proyectos*/
+
+

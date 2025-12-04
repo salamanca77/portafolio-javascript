@@ -37,22 +37,16 @@
             method: "POST",
             body: formData
         })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                } else {
-                    throw new Error(`Error ${res.status}: ${res.statusText}`);
-                }
-            })
+            .then((res) => (res.ok ? res.json() : Promise.reject(res)))
             .then(json => {
                 console.log(json);
                 location.hash = "#gracias";
                 $contactForm.reset();
             })
             .catch(error => {
-                console.log("Error:", error);
-                let message = error.message || "Ocurrió un error, vuelva a intentarlo";
-                $contacResponse.querySelector("h3").innerHTML = `Error: ${message}`;
+                console.log(error);
+                let message = error.status || "Ocurrió un error vuelva a intentarlo";
+                $contacResponse.querySelector("h3").innerHTML = `Error ${error.status}:${message}`;
             })
             .finally(() => {
                 $contactLouder.classList.add("none");

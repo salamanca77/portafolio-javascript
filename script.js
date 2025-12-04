@@ -23,12 +23,12 @@
 /* >>>>>>>>>>>>>>>=>>>CONTACT FORM<<<<<<<<<<<<<<<<<<<<<<< */
 ((d) => {
     const $contactForm = d.querySelector(".contact-form");
-    const $contactLouder = d.querySelector(".contact-form-loader");
-    const $contacResponse = d.querySelector(".contact-form-response");
+    const $contactLoader = d.querySelector(".contact-form-loader");
+    const $contactResponse = d.querySelector(".contact-form-response");
 
     $contactForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        $contactLouder.classList.remove("none");
+        $contactLoader.classList.remove("none");
         fetch("https://formsubmit.co/ajax/joliversalamanca@gmail.com", {
             method: "POST",
             body: new FormData(e.target)
@@ -43,11 +43,11 @@
             .catch(error => {
                 console.log(error);
                 let message = error.status || "Ocurrio un error vuleva a intentarlo";
-                $contacResponse.querySelector("h3").innerHTML = `Error ${error.status}:${message}`;
+                $contactResponse.querySelector("h3").innerHTML = `Error ${error.status}:${message}`;
             })
             .finally(() => {
-                $contactLouder.classList.add("none");
-                setInterval(() => {
+                $contactLoader.classList.add("none");
+                setTimeout(() => {
                     location.hash = "#close";
                 }, 2000);
             });

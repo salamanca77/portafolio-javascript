@@ -27,7 +27,9 @@
   const $contactResponse = d.querySelector(".contact-form-response");
 
   $contactForm.addEventListener("submit", (e) => {
-    e.preventDefault();
+    console.log("Submit event triggered."); // LOG 1
+    e.preventDefault(); // This is the key line to prevent redirection
+    console.log("e.preventDefault() called."); // LOG 2
     $contactLoader.classList.remove("none");
 
     fetch("https://formspree.io/f/mgvgzldl", {
@@ -39,18 +41,22 @@
     })
     .then(res => {
       if (res.ok) {
+        console.log("Fetch successful, response OK."); // LOG 3
         return res.json();
       } else {
+        console.log("Fetch successful, response NOT OK."); // LOG 4
         // For Formspree, even with errors, the response can be JSON
-        return res.json().then(data => Promise.reject({ status: res.status, statusText: res.statusText, body: data }));
+        return Promise.reject(res.json().then(data => ({ status: res.status, statusText: res.statusText, body: data })));
       }
     })
     .then(json => {
+      console.log("JSON parsed, success block reached."); // LOG 5
       console.log(json);
-      location.hash = "#gracias";
-      $contactForm.reset();
+      location.hash = "#gracias"; // This should show the modal
+      $contactForm.reset(); // This clears the form
     })
     .catch(err => {
+      console.error("Fetch failed, catch block reached."); // LOG 6
       console.error(err);
       let message = "Ocurrió un error al enviar, intenta nuevamente.";
       // If Formspree provides an error message in the response body, use it
@@ -62,6 +68,7 @@
       location.hash = "#gracias"; 
     })
     .finally(() => {
+      console.log("Finally block reached."); // LOG 7
       $contactLoader.classList.add("none");
       setTimeout(() => {
         // Only close if it's the success message
